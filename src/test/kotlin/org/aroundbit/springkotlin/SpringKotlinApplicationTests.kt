@@ -17,12 +17,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 class SpringKotlinApplicationTests(@Autowired val restTemplate: TestRestTemplate) {
 
 	@Test
-	fun contextLoads() {
+	fun `Assert current date endpoint returns string of system current date`() {
 		val ent = restTemplate.getForEntity<String>("/api/v1/currentdate")
 		assertThat(ent.statusCode, equalTo(HttpStatus.OK))
 		val body = ent.body
 		assertThat(body.isNullOrEmpty(), equalTo(false))
-		LoggerFactory.getLogger(this::class.java).info("Test ended correctly: " + body)
+		println("Test ended correctly: " + body)
 	}
 
 }
